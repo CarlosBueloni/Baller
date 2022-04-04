@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/models/blocks.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://player/Ball.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Environment" id=1]
+background_mode = 1
+background_color = Color( 0, 0.764706, 1, 1 )
+ambient_light_color = Color( 0.956863, 0.909804, 0.721569, 1 )
+fog_enabled = true
+fog_depth_begin = 0.0
 
 [node name="Level01" type="Spatial"]
 
@@ -12,12 +19,20 @@ cell_center_x = false
 cell_center_y = false
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 0, 0, 0, 1, 0, 1, 65535, 0, 655361, 0, 1, 1441793, 1, 1, 1441794, 65535, 1, 655362, 65536, 65524, 0, 65537, 65524, 0, 131071, 65524, 0, 65536, 65525, 5, 65537, 65525, 0, 131071, 65525, 0, 65536, 65526, 0, 65537, 65526, 0, 131071, 65526, 0, 65536, 65528, 0, 65537, 65528, 0, 131071, 65528, 0, 65536, 65529, 0, 65537, 65529, 0, 131071, 65529, 0, 65536, 65530, 0, 0, 65531, 4, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 1, 65535, 2, 65535, 65535, 1048578 )
+"cells": PoolIntArray( 0, 0, 0, 1, 0, 1, 65535, 0, 655361, 0, 1, 1441793, 1, 1, 1441794, 65535, 1, 655362, 65536, 65524, 1048577, 65537, 65524, 2, 131071, 65524, 1048578, 65536, 65525, 5, 65537, 65525, 1, 131071, 65525, 655361, 65536, 65526, 0, 65537, 65526, 1, 131071, 65526, 655361, 65536, 65527, 0, 65537, 65527, 1, 131071, 65527, 655361, 65536, 65528, 0, 65537, 65528, 1, 131071, 65528, 655361, 65536, 65529, 0, 65537, 65529, 1441794, 131071, 65529, 655362, 65536, 65530, 0, 0, 65531, 4, 0, 65532, 1048576, 1, 65532, 2, 2, 65532, 2, 65534, 65532, 1048578, 65535, 65532, 1048578, 0, 65533, 0, 1, 65533, 1, 2, 65533, 0, 65534, 65533, 1048579, 65535, 65533, 655361, 0, 65534, 0, 1, 65534, 1, 65535, 65534, 655361, 0, 65535, 0, 1, 65535, 2, 65535, 65535, 1048578 )
 }
 __meta__ = {
 "_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, 1, 0 )
+"_editor_floor_": Vector3( 0, 0, 0 )
 }
 
 [node name="Ball" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+rolling_force = 10.0
+jump_impulse = 1000
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 0 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
